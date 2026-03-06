@@ -68,9 +68,7 @@ import sys
 if __name__ == "__main__":
     file = sys.argv[1]
     k, requests = read_input(file)
-
-    print("k =", k)
-    print("requests =", requests)
+    
     print("FIFO  :", fifo(k, requests))
     print("LRU   :", lru(k, requests))
     print("OPTFF :", optff(k, requests))
