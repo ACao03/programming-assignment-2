@@ -37,6 +37,32 @@ def lru(k, requests):
         cache[r] = True
     return misses
 
+def otpff(k, requests):
+    cache = set()
+    misses = 0
+
+    for i in range(len(requests)):
+        r = requests[i]
+        if r in cache:
+            continue
+        misses += 1
+        if len(cache) < k:
+            cache.add(r)
+        else:
+            farthest = -1
+            victim = None
+            for c in cache:
+                try:
+                    next_use = requests.index(c, i + 1)
+                except ValueError:
+                    next_use = float('inf')
+                if next_use > farthest:
+                    farthest = next_use
+                    victim = c
+            cache.remove(victim)
+            cache.add(r)
+    return misses
+
 import sys
 
 if __name__ == "__main__":
@@ -47,3 +73,4 @@ if __name__ == "__main__":
     print("requests =", requests)
     print("FIFO:", fifo(k, requests))
     print("LRU:", lru(k, requests))
+    print("OPTFF:", otpff(k, requests))
