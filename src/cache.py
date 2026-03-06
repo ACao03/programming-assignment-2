@@ -21,6 +21,22 @@ def fifo(k, requests):
             queue.append(r)
     return misses
 
+from collections import OrderedDict
+
+def lru(k, requests):
+    cache = OrderedDict()
+    misses = 0
+
+    for r in requests:
+        if r in cache:
+            cache.move_to_end(r)
+        else:
+            misses += 1
+            if len(cache) == k:
+                cache.popitem(last=False)
+        cache[r] = True
+    return misses
+
 import sys
 
 if __name__ == "__main__":
@@ -30,3 +46,4 @@ if __name__ == "__main__":
     print("k =", k)
     print("requests =", requests)
     print("FIFO:", fifo(k, requests))
+    print("LRU:", lru(k, requests))
