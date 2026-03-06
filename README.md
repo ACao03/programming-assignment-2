@@ -40,6 +40,22 @@ OPTFF : <misses>
 
 ---
 
+## Example
+
+
+python src/cache.py tests/example.in
+
+Input:  
+3 12    
+1 2 3 4 1 2 5 1 2 3 4 5
+
+Output:     
+FIFO  : 9   
+LRU   : 10      
+OPTFF : 7   
+
+---
+
 # Question 1: Empirical Comparison
 
 | Input File | k | m | FIFO | LRU | OPTFF |
