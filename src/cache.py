@@ -4,6 +4,23 @@ def read_input(filename):
         requests = list(map(int, f.readline().split()))
     return k, requests
 
+from collections import deque
+
+def fifo(k, requests):
+    cache = set()
+    queue = deque()
+    misses = 0
+
+    for r in requests:
+        if r not in cache:
+            misses += 1
+            if len(cache) == k:
+                old = queue.popleft()
+                cache.remove(old)
+            cache.add(r)
+            queue.append(r)
+    return misses
+
 import sys
 
 if __name__ == "__main__":
@@ -12,3 +29,4 @@ if __name__ == "__main__":
 
     print("k =", k)
     print("requests =", requests)
+    print("FIFO:", fifo(k, requests))
