@@ -37,7 +37,7 @@ def lru(k, requests):
         cache[r] = True
     return misses
 
-def otpff(k, requests):
+def optff(k, requests):
     cache = set()
     misses = 0
 
