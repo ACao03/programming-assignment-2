@@ -71,6 +71,6 @@ if __name__ == "__main__":
 
     print("k =", k)
     print("requests =", requests)
-    print("FIFO:", fifo(k, requests))
-    print("LRU:", lru(k, requests))
-    print("OPTFF:", otpff(k, requests))
+    print("FIFO  :", fifo(k, requests))
+    print("LRU   :", lru(k, requests))
+    print("OPTFF :", optff(k, requests))
